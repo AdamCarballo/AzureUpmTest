@@ -20,23 +20,20 @@ jobs:
 #          name: "git subtree split"
 #          command: echo 'git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm'
 
-      - run: git subtree split --prefix=Assets/AzureUpmTest --branch upm
+#      - run: git subtree split --prefix=Assets/AzureUpmTest --branch upm
 
       - run: git checkout upm
-
-      - run: ls -l
 
       - run:
           name: "Setup custom environment variables"
           command: |
-            echo 'export VERSION=$(cat package.json | grep version | head -1)' >> $BASH_ENV
+            echo 'export VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g')' >> $BASH_ENV
       - run:
           name: "What was my custom environment variable?"
           command: echo ${VERSION}
 
-
-      - run: git tag v1.0.2 upm
-      - run: git push origin upm --tags
+      #- run: git tag v1.0.3 upm
+      #- run: git push origin upm --tags
       - persist_to_workspace:
           root: ~/repo
           paths: .
