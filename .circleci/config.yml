@@ -16,9 +16,11 @@ jobs:
       - run: git checkout --track origin/upm
       - run: git checkout master
 
-      - run:
-          name: "git subtree split"
-          command: echo 'git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm'
+#      - run:
+#          name: "git subtree split"
+#          command: echo 'git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm'
+
+      - run: git subtree split --prefix=Assets/AzureUpmTest --branch upm
 
       - run: git checkout upm
 
