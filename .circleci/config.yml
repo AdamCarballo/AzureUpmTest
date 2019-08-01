@@ -17,10 +17,12 @@ jobs:
       - run: git checkout master
 
       - run:
-          name: "git Subtree split"
+          name: "git subtree split"
           command: echo 'git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm'
 
       - run: git checkout upm
+
+      - run: ls -l
 
       - run:
           name: "Setup custom environment variables"
