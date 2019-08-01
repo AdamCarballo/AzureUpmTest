@@ -1,0 +1,44 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:12.7.0
+
+jobs:
+  subtree-tag:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm
+      - run: git tag v1.0.1 upm
+      - run: git push origin upm --tags
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Set registry URL
+          command: npm set registry https://packages.f10.dev/upm/
+      - run:
+          name: Authenticate with registry
+          command: echo "//packages.f10.dev/upm/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+            
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - subtree-tag:
+          filters:
+            branches:
+              only: master
+#      - deploy:
+#          requires:
+#            - subtree-tag
