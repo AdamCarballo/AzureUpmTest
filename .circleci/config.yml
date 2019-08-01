@@ -9,6 +9,9 @@ jobs:
   subtree-tag:
     <<: *defaults
     steps:
+      - add_ssh_keys:
+          fingerprints:
+              - "8b:da:d6:9a:50:0f:db:d9:1b:d4:19:e7:1e:bc:91:cf"
       - checkout
       - run: git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm
       - run: git tag v1.0.1 upm
