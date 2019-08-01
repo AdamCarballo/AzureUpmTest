@@ -19,7 +19,7 @@ jobs:
       - run:
           name: "Setup custom environment variables"
           command: |
-            echo 'export VERSION="cat packages.json | grep version | head -1 "' >> $BASH_ENV
+            echo 'export VERSION=cat packages.json | grep version | head -1' >> $BASH_ENV
       - run:
           name: "What was my custom environment variable?"
           command: echo ${VERSION}
