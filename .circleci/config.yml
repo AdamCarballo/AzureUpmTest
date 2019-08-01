@@ -14,16 +14,16 @@ jobs:
               - "8b:da:d6:9a:50:0f:db:d9:1b:d4:19:e7:1e:bc:91:cf"
       - checkout
       - run: git checkout --track origin/upm
-      - run: git checkout master
 
       - run:
           name: "Setup custom environment variables"
           command: |
-            echo 'export VERSION=$(cat packages.json | grep version | head -1)' >> $BASH_ENV
+            echo 'export VERSION=$(cat package.json | grep version | head -1)' >> $BASH_ENV
       - run:
           name: "What was my custom environment variable?"
           command: echo ${VERSION}
 
+      - run: git checkout master
       - run: git subtree split --prefix=Assets/${upm_DIRECTORY} --branch upm
       - run: git tag v1.0.2 upm
       - run: git push origin upm --tags
