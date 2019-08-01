@@ -32,7 +32,7 @@ jobs:
           name: "What was my custom environment variable?"
           command: echo ${VERSION}
 
-      - run: echo 'git tag $VERSION upm'
+      - run: git tag $VERSION upm
       #- run: git push origin upm --tags
       - persist_to_workspace:
           root: ~/repo
