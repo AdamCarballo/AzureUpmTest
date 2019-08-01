@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run: git checkout --track origin/upm
       - run: git checkout master
-      - run: git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm
+      - run: git subtree split --prefix=Assets/AzureUpmTest --branch upm
       - run: git tag v1.0.1 upm
       - run: git push origin upm --tags
       - persist_to_workspace:
@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Publish package
           command: npm publish
-            
+
 workflows:
   version: 2
   deploy:
