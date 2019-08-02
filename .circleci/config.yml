@@ -13,27 +13,10 @@ jobs:
           fingerprints:
               - "8b:da:d6:9a:50:0f:db:d9:1b:d4:19:e7:1e:bc:91:cf"
       - checkout
-      - run: git checkout --track origin/upm
-      - run: git checkout master
-
-#      - run:
-#          name: "git subtree split"
-#          command: echo 'git subtree split --prefix=Assets/$upm_DIRECTORY --branch upm'
-
-#      - run: git subtree split --prefix=Assets/AzureUpmTest --branch upm
-
-      - run: git checkout upm
-
       - run:
-          name: "Setup custom environment variables"
-          command: |
-            echo 'export VERSION=$(cat package.json | grep version | head -1 | cut -d \  -f 4 | sed "s/[\",]//g")' >> $BASH_ENV
-      - run:
-          name: "What was my custom environment variable?"
-          command: echo ${VERSION}
+          name: Run git script
+          command: sh .circleci/git-branch.sh
 
-      - run: git tag $VERSION upm
-      #- run: git push origin upm --tags
       - persist_to_workspace:
           root: ~/repo
           paths: .
