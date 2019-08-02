@@ -13,19 +13,13 @@ jobs:
           fingerprints:
               - "8b:da:d6:9a:50:0f:db:d9:1b:d4:19:e7:1e:bc:91:cf"
       - checkout
-
       - run:
-          name: "Setup custom environment variables"
+          name: "Export version from package.json"
           command: |
             echo 'export VERSION=$(cat Assets/$UPM_DIRECTORY/package.json | grep version | head -1 | cut -d \  -f 4 | sed "s/[\",]//g")' >> $BASH_ENV
       - run:
-          name: "What was"
-          command: echo $VERSION
-
-      - run:
           name: Run git script
           command: sh .circleci/git-branch.sh
-
       - persist_to_workspace:
           root: ~/repo
           paths: .
@@ -52,6 +46,6 @@ workflows:
           filters:
             branches:
               only: master
-#      - deploy:
-#          requires:
-#            - subtree-tag
+      - deploy:
+          requires:
+            - subtree-tag
