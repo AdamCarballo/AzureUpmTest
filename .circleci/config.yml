@@ -28,9 +28,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-          
-      - run: ls -l
-
       - run:
           name: Set registry URL
           command: npm set registry https://packages.f10.dev/upm/
