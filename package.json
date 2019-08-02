@@ -1,7 +1,7 @@
 {
   "name": "com.f10.azure-upm-test",
   "displayName": "Azure UPM Test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": ["f10"],
   "description": "Test more testing"
 }
