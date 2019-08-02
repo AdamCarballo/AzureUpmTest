@@ -13,6 +13,15 @@ jobs:
           fingerprints:
               - "8b:da:d6:9a:50:0f:db:d9:1b:d4:19:e7:1e:bc:91:cf"
       - checkout
+
+      - run:
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export VERSION=$(cat ../Assets/$upm_DIRECTORY/package.json | grep version | head -1 | cut -d \  -f 4 | sed "s/[\",]//g")' >> $BASH_ENV
+      - run:
+          name: "What was"
+          command: echo $VERSION
+
       - run:
           name: Run git script
           command: sh .circleci/git-branch.sh
