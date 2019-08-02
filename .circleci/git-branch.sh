@@ -13,7 +13,9 @@ git checkout --track origin/upm
 git checkout master
 # Split master by the directory and commit to upm
 git subtree split --prefix=Assets/$UPM_DIRECTORY --branch upm
-# Tag the last upm commit
-git tag $TRIMMED_VERSION upm
+# Go back to upm (helps for the deploy job to be on upm already)
+git checkout upm
+# Tag the last commit
+git tag $TRIMMED_VERSION
 # Push to upm with tag
 git push origin upm --tags
