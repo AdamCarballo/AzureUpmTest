@@ -11,5 +11,6 @@ git subtree split --prefix=Assets/$UPM_DIRECTORY --branch upm
 echo $VERSION
 echo v$VERSION
 
-git tag v$VERSION upm
+git checkout upm
+git tag v$VERSION
 git push origin upm --tags
