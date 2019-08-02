@@ -17,7 +17,7 @@ jobs:
       - run:
           name: "Setup custom environment variables"
           command: |
-            echo 'export VERSION=$(cat ../Assets/$UPM_DIRECTORY/package.json | grep version | head -1 | cut -d \  -f 4 | sed "s/[\",]//g")' >> $BASH_ENV
+            echo 'export VERSION=$(cat Assets/$UPM_DIRECTORY/package.json | grep version | head -1 | cut -d \  -f 4 | sed "s/[\",]//g")' >> $BASH_ENV
       - run:
           name: "What was"
           command: echo $VERSION
