@@ -14,6 +14,10 @@ jobs:
               - "8b:da:d6:9a:50:0f:db:d9:1b:d4:19:e7:1e:bc:91:cf"
       - checkout
 
+      - run: echo $UPM_DIRECTORY
+      - run: echo $upm_DIRECTORY
+      - run: echo ${upm_DIRECTORY}
+
       - run:
           name: "Setup custom environment variables"
           command: |
