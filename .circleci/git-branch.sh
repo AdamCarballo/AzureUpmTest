@@ -9,7 +9,7 @@ git checkout master
 git subtree split --prefix=Assets/$UPM_DIRECTORY --branch upm
 
 echo $VERSION
+echo v$VERSION
 
-git tag 'v2.0.0' upm
-git tag '$VERSION' upm
+git tag v$VERSION upm
 git push origin upm --tags
