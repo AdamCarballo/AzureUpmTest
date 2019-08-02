@@ -14,14 +14,10 @@ jobs:
               - "8b:da:d6:9a:50:0f:db:d9:1b:d4:19:e7:1e:bc:91:cf"
       - checkout
 
-      - run: echo $UPM_DIRECTORY
-      - run: echo $upm_DIRECTORY
-      - run: echo ${upm_DIRECTORY}
-
       - run:
           name: "Setup custom environment variables"
           command: |
-            echo 'export VERSION=$(cat ../Assets/$upm_DIRECTORY/package.json | grep version | head -1 | cut -d \  -f 4 | sed "s/[\",]//g")' >> $BASH_ENV
+            echo 'export VERSION=$(cat ../Assets/$UPM_DIRECTORY/package.json | grep version | head -1 | cut -d \  -f 4 | sed "s/[\",]//g")' >> $BASH_ENV
       - run:
           name: "What was"
           command: echo $VERSION
@@ -43,7 +39,7 @@ jobs:
           command: npm set registry https://packages.f10.dev/upm/
       - run:
           name: Authenticate with registry
-          command: echo "//packages.f10.dev/upm/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+          command: echo "//packages.f10.dev/upm/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
       - run:
           name: Publish package
           command: npm publish
